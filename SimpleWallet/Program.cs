@@ -15,6 +15,11 @@ namespace SimpleWallet
             Console.WriteLine("Hello World!");
         }
 
+        private (string privateKey, string accountId) GenerateWalletKey()
+        {
+            return Signatures.GenerateWallet();
+        }
+
         private void CreateNewWallet(string networkId, string name, string password)
         {
             var path = Wallet.GetFullFolderName(networkId, "wallets");
