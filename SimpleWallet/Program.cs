@@ -33,14 +33,21 @@ namespace SimpleWallet
             Wallet.Create(storage, name, password, networkId, privateKey);
         }
 
-        private Wallet CreateWalletInMemory(string networkId, string privateKey = null)
+        private Wallet OpenWallet(string networkId, string name, string password)
+        {
+            var path = Wallet.GetFullFolderName(networkId, "wallets");
+            var storage = new SecuredWalletStore(path);
+            return Wallet.Open(storage, name, password);
+        }
+
+        private Wallet GetWalletInMemory(string networkId, string privateKey = null)
         {
             var store = new AccountInMemoryStorage();
             var name = Guid.NewGuid().ToString();
-            string pvtKey = privateKey;
             if (privateKey == null)
-                pvtKey = Signatures.GenerateWallet().privateKey;
-            Wallet.Create(store, name, "", networkId, privateKey);
+                Wallet.Create(store, name, "", networkId, Signatures.GenerateWallet().privateKey);
+            else
+                Wallet.Create(store, name, "", networkId, privateKey);
             var wallet = Wallet.Open(store, name, "");
             return wallet;
         }
