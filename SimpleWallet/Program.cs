@@ -47,6 +47,7 @@ namespace SimpleWallet
 
         private async Task<APIResultCodes> RefreshBalanceAsync(Wallet wallet)
         {
+            // implicty receive
             var rpcClient = LyraRestClient.Create(wallet.NetworkId, Environment.OSVersion.Platform.ToString(), $"{LyraGlobal.PRODUCTNAME} Client Cli", "1.0a");
             return await wallet.Sync(rpcClient);
         }
