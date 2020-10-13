@@ -20,6 +20,7 @@ namespace SimpleWallet
             DumpWallet(wallet1);
 
             // refresh balance
+            Console.WriteLine("Rrfreshing balance for wallet1...");
             await wallet1.RefreshBalanceAsync();
             DumpWallet(wallet1);
 

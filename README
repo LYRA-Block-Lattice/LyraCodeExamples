@@ -1,0 +1,9 @@
+#Simple wallet example for Lyra
+
+Note:
+
+1) send/receive or any transactional operation must be kept in serial for a wallet. parallel transaction operations will fail randomly.
+2) multiple wallet can run in parallel. transaction in one wallet don't affect others.
+3) please keep in mind don't open wallets which have the same private key twice. 
+4) a wallet file stores only private key and DPoS vote info. A balance refreshing is needed before any transaction.
+5) Wallet.SendOnce will return immediately if failed. Wallet.Send will retry for 20 seconds if failed. this will cover times when network is in view change state.
