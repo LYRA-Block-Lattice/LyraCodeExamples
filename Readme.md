@@ -1,4 +1,4 @@
-#Simple wallet example for Lyra
+# Simple wallet example for Lyra
 
 Notes:
 
