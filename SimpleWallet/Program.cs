@@ -28,13 +28,26 @@ namespace SimpleWallet
             var wallet2 = new SimpleWallet(networkId, keyPair.privateKey);
             Console.WriteLine($"Wallet2: {wallet2.AccountId}");
 
-            // 
+            // send from wallet1 to wallet2
+            var result = await wallet1.SendToken(wallet2.AccountId, LyraGlobal.OFFICIALTICKERCODE, 10);
+            if(result == Lyra.Core.Blocks.APIResultCodes.Success)
+            {
+                Console.WriteLine($"Success send {LyraGlobal.OFFICIALTICKERCODE} {10} to {wallet2.AccountId}");
+
+                Console.WriteLine("Rrfreshing balance for wallet2...");
+                await wallet2.RefreshBalanceAsync();
+                DumpWallet(wallet2);
+            }
+            else
+            {
+                Console.WriteLine($"Failed to send token. error: {result}");
+            }
         }
 
         private static void DumpWallet(SimpleWallet simpleWallet)
         {
-            Console.WriteLine($"Account ID: {simpleWallet.AccountId}");
-            Console.WriteLine($"Balance: {simpleWallet.GetBalance(LyraGlobal.OFFICIALTICKERCODE)}");
+            Console.WriteLine($"{simpleWallet.LyraWallet.AccountName} Account ID: {simpleWallet.AccountId}");
+            Console.WriteLine($"{simpleWallet.LyraWallet.AccountName} Balance: {simpleWallet.GetBalance(LyraGlobal.OFFICIALTICKERCODE)}");
         }
     }
 }

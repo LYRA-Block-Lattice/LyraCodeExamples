@@ -53,7 +53,6 @@ namespace SimpleWallet
             Wallet.Create(storage, name, password, networkId, publicKey);
         }
 
-
         public async Task<APIResultCodes> RefreshBalanceAsync()
         {
             // implicty receive
