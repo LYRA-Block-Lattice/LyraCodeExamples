@@ -9,3 +9,4 @@ Notes:
 5) Wallet.SendOnce will return immediately if failed. Wallet.Send will retry in 20 seconds if first attempt failed. 
 This will cover for special situations when network is in the View Change state (when new primary nodes are added or old nodes removed).
 6) If the wallet has been idle for a while, do sync before any transaction to keep the state updated with the network.
+7) Time/Clock is very important for Lyra network. Please keep clock synced for both node and client.
